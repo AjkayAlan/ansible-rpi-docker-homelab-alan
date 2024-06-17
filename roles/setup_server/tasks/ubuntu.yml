@@ -1,0 +1,19 @@
+- name: Update apt
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Upgrade the OS
+  ansible.builtin.apt:
+    upgrade: dist
+
+- name: Install required system packages
+  ansible.builtin.apt:
+    name:
+      - bash
+      - curl
+      - git
+      - htop
+      - nano
+      - software-properties-common
+      - vim
+      - wget

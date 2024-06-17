@@ -1,0 +1,16 @@
+- name: Update apt
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Install required dependencies
+  ansible.builtin.apt:
+    name:
+      - software-properties-common
+
+- name: Add ansible stable repository from PPA
+  ansible.builtin.apt_repository:
+    repo: ppa:ansible/ansible
+
+- name: Install ansible
+  ansible.builtin.apt:
+    name: foo
