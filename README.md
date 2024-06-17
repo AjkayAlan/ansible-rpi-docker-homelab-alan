@@ -7,5 +7,5 @@ An ansible playbook to set up my homelab stuff using Docker via Ansible
 SSH into the server as your root user, and then run the playbook:
 
 ```
-ansible-playbook -i localhost main.yml
+ansible-playbook main.yml
 ```
