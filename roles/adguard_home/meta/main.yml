@@ -1,2 +1,4 @@
 dependencies:
+  - setup_server
+  - docker
   - community.docker

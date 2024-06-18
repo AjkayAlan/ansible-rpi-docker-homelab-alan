@@ -17,3 +17,9 @@
       - software-properties-common
       - vim
       - wget
+
+- name: Create a directory for all container data
+  ansible.builtin.file:
+    path: "{{ container_parent_data_directory }}"
+    state: directory
+    mode: "0755"

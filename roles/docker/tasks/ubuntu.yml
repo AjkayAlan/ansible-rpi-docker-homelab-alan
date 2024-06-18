@@ -64,6 +64,3 @@
     name: "{{ ansible_env.SUDO_USER }}"
     groups: docker
     append: true
-
-- name: Reset ssh connection to apply user changes
-  ansible.builtin.meta: reset_connection
