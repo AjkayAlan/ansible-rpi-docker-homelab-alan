@@ -2,5 +2,5 @@
   become: true
   roles:
     - setup_server
-    # - ansible
+    - ansible
     # - docker

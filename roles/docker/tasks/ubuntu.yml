@@ -58,13 +58,12 @@
 - name: Create docker group
   ansible.builtin.group:
     name: docker
-# TODO: Find ssh user not root
 
-# - name: Add the ssh user to the docker group
-#   ansible.builtin.user:
-#     name: james
-#     groups: docker
-#     append: true
+- name: Add the ssh user to the docker group
+  ansible.builtin.user:
+    name: "{{ ansible_facts['env']['SUDO_USER'] }}"
+    groups: docker
+    append: true
 
-# - name: Reset ssh connection to apply user changes
-#   ansible.builtin.meta: reset_connection
+- name: Reset ssh connection to apply user changes
+  ansible.builtin.meta: reset_connection
