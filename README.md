@@ -30,6 +30,17 @@ Note that the first time after running the docker role, you will need to close a
 
 Set up Adguard Home if you havent by going to http://your-server:3000. Set the listen port to 3000 (so we don't eat up port 80)
 
+## Ports Used
+
+UIs:
+
+- Adguard Home: 3000
+- Smokeping: 8080
+
+Other:
+
+- Adguard Home: 53
+
 ## Troubleshooting
 
 If your not sure if ipv6 is working, run `docker run --rm curlimages/curl -6 https://ifconfig.co`. If you get cannot connect to server, check the bridge network via `docker network inspect bridge`. If you see EnableIPV6 as false, try restarting docker (since the notify didn't work for me): `sudo systemctl restart docker`

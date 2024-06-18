@@ -5,3 +5,4 @@
     - ansible
     - docker
     - adguard_home
+    - smokeping

@@ -1,0 +1,34 @@
+- name: Create a image directory for container data
+  ansible.builtin.file:
+    path: "{{ container_parent_data_directory }}/{{ container_name }}"
+    state: directory
+    mode: "0755"
+
+- name: Create a data directory for smokeping
+  ansible.builtin.file:
+    path: "{{ container_parent_data_directory }}/{{ container_name }}/data"
+    state: directory
+    mode: "0755"
+
+- name: Create a config directory for smokeping
+  ansible.builtin.file:
+    path: "{{ container_parent_data_directory }}/{{ container_name }}/config"
+    state: directory
+    mode: "0755"
+
+- name: Create the container
+  community.docker.docker_container:
+    name: "{{ container_name }}"
+    image: lscr.io/linuxserver/smokeping
+    state: started
+    restart_policy: unless-stopped
+    detach: true
+    ports:
+      - "8080:80"
+    env:
+      PUID: 1000
+      PGID: 1000
+      TZ: "Etc/UTC"
+    volumes:
+      - "{{ container_parent_data_directory }}/{{ container_name }}/data:/data"
+      - "{{ container_parent_data_directory }}/{{ container_name }}/config:/config"
