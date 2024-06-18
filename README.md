@@ -6,6 +6,10 @@ An ansible playbook to set up my homelab stuff on Ubuntu 24 using Docker via Ans
 
 This has only been tested on Ubuntu 24. Other Ubuntu versions may work (try at your own risk!). Other distros are not supported.
 
+## Before Running
+
+Adguard is setup to only use standard port 53. If you plan to do more stuff like DNS-over-HTTPS, you will need to edit the role to pass the proper ports
+
 ## Running
 
 SSH into the server as your root user, clone the repo, then install the dependencies:
