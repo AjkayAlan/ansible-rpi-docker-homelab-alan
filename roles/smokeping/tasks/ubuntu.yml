@@ -26,8 +26,8 @@
     ports:
       - "8080:80"
     env:
-      PUID: 1000
-      PGID: 1000
+      PUID: "1000"
+      PGID: "1000"
       TZ: "Etc/UTC"
     volumes:
       - "{{ container_parent_data_directory }}/{{ container_name }}/data:/data"
