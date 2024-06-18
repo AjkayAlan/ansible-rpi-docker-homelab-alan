@@ -2,6 +2,10 @@
 
 An ansible playbook to set up my homelab stuff on Ubuntu 24 using Docker via Ansible
 
+## Distro Support
+
+This has only been tested on Ubuntu 24. Other Ubuntu versions may work (try at your own risk!). Other distros are not supported.
+
 ## Running
 
 SSH into the server as your root user, clone the repo, then install the dependencies:
