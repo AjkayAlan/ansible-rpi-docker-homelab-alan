@@ -16,6 +16,50 @@
     state: directory
     mode: "0755"
 
+- name: Create the resolved.conf.d directory if it doesn't exist
+  ansible.builtin.file:
+    path: "/etc/systemd/resolved.conf.d"
+    state: directory
+    mode: "0755"
+
+- name: Create resolvd.conf for adguard
+  ansible.builtin.file:
+    path: /etc/systemd/resolved.conf.d/adguardhome.conf
+    state: touch
+    mode: "0644"
+
+# We do this so if Adguard fails to start our internet isnt fully broken
+- name: Copy a starting dns config before switching to adguard
+  ansible.builtin.copy:
+    dest: /etc/systemd/resolved.conf.d/adguardhome.conf
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Resolve]
+      DNS=1.1.1.1
+      DNSStubListener=no
+
+- name: Backup existing resolv.conf
+  ansible.builtin.copy:
+    src: /etc/resolv.conf
+    dest: /etc/resolv.conf.backup
+    owner: root
+    group: root
+
+- name: Create a symbolic link
+  ansible.builtin.file:
+    src: /run/systemd/resolve/resolv.conf
+    dest: /etc/resolv.conf
+    owner: foo
+    group: foo
+    state: link
+
+- name: Restart systemd-resolved for settings to take affect
+  ansible.builtin.service:
+    name: systemd-resolved.service
+    state: restarted
+
 # - name: Pull the image before temporarily breaking DNS
 #   community.docker.docker_image:
 #     name: adguard/adguardhome
@@ -57,3 +101,19 @@
     volumes:
       - "{{ container_parent_data_directory }}/{{ container_name }}/work:/opt/adguardhome/work"
       - "{{ container_parent_data_directory }}/{{ container_name }}/conf:/opt/adguardhome/conf"
+
+- name: Copy a final dns config after adguard started
+  ansible.builtin.copy:
+    dest: /etc/systemd/resolved.conf.d/adguardhome.conf
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Resolve]
+      DNS=127.0.0.1
+      DNSStubListener=no
+
+- name: Restart systemd-resolved for settings to take affect
+  ansible.builtin.service:
+    name: systemd-resolved.service
+    state: restarted
