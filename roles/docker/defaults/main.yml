@@ -1,5 +1,11 @@
 docker_apt_filename: "docker"
 
+docker_daemon_options:
+  experimental: true
+  ip6tables: true
+  ipv6: true
+  fixed-cidr-v6: "2001:db8:1::/64"
+
 docker_apt_gpg_key_url: https://download.docker.com/linux/ubuntu/gpg
 docker_apt_release_channel: stable
 docker_apt_ansible_distribution: "{{ 'ubuntu' if ansible_distribution in ['Pop!_OS', 'Linux Mint'] else ansible_distribution }}"

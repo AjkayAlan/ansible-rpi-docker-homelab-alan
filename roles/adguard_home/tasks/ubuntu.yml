@@ -47,7 +47,7 @@
     owner: root
     group: root
 
-- name: Create a symbolic link
+- name: Symlink the systemd resolv.conf to /etc/resolv.conf
   ansible.builtin.file:
     src: /run/systemd/resolve/resolv.conf
     dest: /etc/resolv.conf
@@ -60,22 +60,7 @@
     name: systemd-resolved.service
     state: restarted
 
-# - name: Pull the image before temporarily breaking DNS
-#   community.docker.docker_image:
-#     name: adguard/adguardhome
-#     source: pull
-
-# - name: Stop systemd-resolved - this will break dns until we get Adguard running!
-#   ansible.builtin.service:
-#     name: systemd-resolved.service
-#     state: stopped
-#     enabled: false
-
-# TODO: IPV6 + Better Network To Avoid Port 53 Fun
-# https://aschmid-it.com/en/adguard-home-on-docker-with-ipv6/
-# https://docs.docker.com/config/daemon/ipv6/
-
-- name: Create the container - DNS should come back after this starts up
+- name: Create the container
   community.docker.docker_container:
     name: "{{ container_name }}"
     image: adguard/adguardhome

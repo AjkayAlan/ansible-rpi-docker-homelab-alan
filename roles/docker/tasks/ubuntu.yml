@@ -52,6 +52,19 @@
     state: started
     enabled: true
 
+- name: Ensure /etc/docker directory exists.
+  ansible.builtin.file:
+    path: /etc/docker
+    state: directory
+    mode: "0755"
+
+- name: Configure Docker daemon options to allow ipv6
+  ansible.builtin.copy:
+    content: "{{ docker_daemon_options | to_nice_json }}"
+    dest: /etc/docker/daemon.json
+    mode: "0644"
+  notify: restart docker
+
 - name: Ensure handlers are notified now to avoid firewall conflicts
   ansible.builtin.meta: flush_handlers
 
