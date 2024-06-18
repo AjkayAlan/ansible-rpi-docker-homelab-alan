@@ -24,9 +24,12 @@
     restart_policy: unless-stopped
     detach: true
     ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "3000:3000/tcp" # Use this for the UI port as well, lets save 80 and 443
+      # - "53:53/tcp" # Use this for standard DNS, but you may fight with systemd-resolved.service
+      # - "53:53/udp" # Use this for standard DNS, but you may fight with systemd-resolved.service
+      - "80:80/tcp"
+      - "443:443/tcp"
+      - "443:443/udp"
+      - "3000:3000/tcp"
       # - "67:67/udp" # Uncomment if you plan to use Adguard Home as a DHCP server
       # - "68:68/tcp" # Uncomment if you plan to use Adguard Home as a DHCP server
       # - "68:68/udp" # Uncomment if you plan to use Adguard Home as a DHCP server
