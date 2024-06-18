@@ -4,13 +4,7 @@ An ansible playbook to set up my homelab stuff on Ubuntu 24 using Docker via Ans
 
 ## Running
 
-SSH into the server as your root user, clone the repo, and quickly get temp sudo:
-
-```
-sudo ls
-```
-
-Then install the dependencies:
+SSH into the server as your root user, clone the repo, then install the dependencies:
 
 ```
 ansible-galaxy install -r requirements.yml
