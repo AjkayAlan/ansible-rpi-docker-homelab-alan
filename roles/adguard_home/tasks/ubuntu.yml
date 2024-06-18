@@ -51,8 +51,8 @@
   ansible.builtin.file:
     src: /run/systemd/resolve/resolv.conf
     dest: /etc/resolv.conf
-    owner: foo
-    group: foo
+    owner: root
+    group: root
     state: link
 
 - name: Restart systemd-resolved for settings to take affect
