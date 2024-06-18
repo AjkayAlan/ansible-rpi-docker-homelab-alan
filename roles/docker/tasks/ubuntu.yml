@@ -44,7 +44,7 @@
       - containerd.io
       - docker-buildx-plugin
       - docker-compose-plugin
-    notify: Restart docker
+  notify: Restart docker
 
 - name: Ensure docker is enabled and started on boot
   ansible.builtin.service:
