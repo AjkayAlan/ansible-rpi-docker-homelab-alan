@@ -1,6 +1,6 @@
 # ansible-rpi-docker-homelab-alan
 
-An ansible playbook to set up my homelab stuff using Docker via Ansible
+An ansible playbook to set up my homelab stuff on Ubuntu 24 using Docker via Ansible
 
 ## Running
 
