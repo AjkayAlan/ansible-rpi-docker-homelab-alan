@@ -1,2 +1,5 @@
-collections:
-- community.docker
+# collections:
+# # With just the collection name
+# - my_namespace.my_collection
+
+- name: community.docker.docker_container
