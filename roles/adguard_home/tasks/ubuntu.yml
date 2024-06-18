@@ -16,7 +16,18 @@
     state: directory
     mode: "0755"
 
-- name: Create the container
+- name: Pull the image before temporarily breaking DNS
+  community.docker.docker_image:
+    name: adguard/adguardhome
+    source: pull
+
+- name: Stop systemd-resolved - this will break dns until we get Adguard running!
+  ansible.builtin.service:
+    name: systemd-resolved.service
+    state: stopped
+    enabled: false
+
+- name: Create the container - DNS should come back after this starts up
   community.docker.docker_container:
     name: "{{ container_name }}"
     image: adguard/adguardhome
@@ -24,11 +35,11 @@
     restart_policy: unless-stopped
     detach: true
     ports:
-      # - "53:53/tcp" # Use this for standard DNS, but you may fight with systemd-resolved.service
-      # - "53:53/udp" # Use this for standard DNS, but you may fight with systemd-resolved.service
-      - "80:80/tcp"
-      - "443:443/tcp"
-      - "443:443/udp"
+      - "53:53/tcp"
+      - "53:53/udp"
+      # - "80:80/tcp" # We are going to run the Web UI on 3000, and not use HTTPS or DNS-over-HTTPS so this isn't needed
+      # - "443:443/tcp" # We are going to run the Web UI on 3000, and not use HTTPS or DNS-over-HTTPS so this isn't needed
+      # - "443:443/udp" # We are going to run the Web UI on 3000, and not use HTTPS or DNS-over-HTTPS so this isn't needed
       - "3000:3000/tcp"
       # - "67:67/udp" # Uncomment if you plan to use Adguard Home as a DHCP server
       # - "68:68/tcp" # Uncomment if you plan to use Adguard Home as a DHCP server
