@@ -1,6 +1,7 @@
 - hosts: all
   become: true
+  gather_facts: true
   roles:
     - setup_server
-    - ansible
-    - docker
+    # - ansible
+    # - docker
