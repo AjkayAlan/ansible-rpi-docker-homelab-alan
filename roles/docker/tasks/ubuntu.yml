@@ -63,7 +63,7 @@
     content: "{{ docker_daemon_options | to_nice_json }}"
     dest: /etc/docker/daemon.json
     mode: "0644"
-  notify: restart docker
+  notify: Restart docker
 
 - name: Ensure handlers are notified now to avoid firewall conflicts
   ansible.builtin.meta: flush_handlers
