@@ -1,6 +1,6 @@
 docker_apt_filename: "docker"
 
-ocker_apt_gpg_key_url: https://download.docker.com/linux/ubuntu/gpg
+docker_apt_gpg_key_url: https://download.docker.com/linux/ubuntu/gpg
 docker_apt_release_channel: stable
 docker_apt_ansible_distribution: "{{ 'ubuntu' if ansible_distribution in ['Pop!_OS', 'Linux Mint'] else ansible_distribution }}"
 docker_repo_url: https://download.docker.com/linux
