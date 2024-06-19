@@ -4,13 +4,13 @@
     state: directory
     mode: "0755"
 
-- name: Create a work directory for adguard_home
+- name: Create a work directory
   ansible.builtin.file:
     path: "{{ container_parent_data_directory }}/{{ container_name }}/work"
     state: directory
     mode: "0755"
 
-- name: Create a conf directory for adguard_home
+- name: Create a conf directory
   ansible.builtin.file:
     path: "{{ container_parent_data_directory }}/{{ container_name }}/conf"
     state: directory

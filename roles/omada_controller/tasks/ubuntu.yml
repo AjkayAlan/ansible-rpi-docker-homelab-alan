@@ -4,13 +4,13 @@
     state: directory
     mode: "0755"
 
-- name: Create a data directory for omada_controller
+- name: Create a data directory
   ansible.builtin.file:
     path: "{{ container_parent_data_directory }}/{{ container_name }}/data"
     state: directory
     mode: "0755"
 
-- name: Create a logs directory for omada_controller
+- name: Create a logs directory
   ansible.builtin.file:
     path: "{{ container_parent_data_directory }}/{{ container_name }}/logs"
     state: directory
