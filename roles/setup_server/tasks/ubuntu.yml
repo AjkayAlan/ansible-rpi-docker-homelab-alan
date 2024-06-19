@@ -1,3 +1,16 @@
+- name: Set up static ip
+  ansible.builtin.copy:
+    src: 50-cloud-init.yaml
+    dest: /etc/netplan/50-cloud-init.yaml
+    owner: root
+    group: root
+    mode: "0600"
+  register: static_ip_config
+
+- name: Apply static ip config
+  ansible.builtin.command: netplan apply
+  when: static_ip_config.changed
+
 - name: Update apt
   ansible.builtin.apt:
     update_cache: yes

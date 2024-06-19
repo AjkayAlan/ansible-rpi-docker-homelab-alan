@@ -4,8 +4,11 @@ An ansible playbook to set up my homelab stuff on Ubuntu 24 using Docker via Ans
 
 ## Disclaimers
 
+Running this without knowing what it does may break your machine! You have been warned! Some notes:
+
 - This has only been tested on Ubuntu 24. Other Ubuntu versions may work (try at your own risk!). Other distros are not supported.
 - This uses Watchtower to auto update running containers, which may increase instability or cause issues for some containers
+- This relies on your ethernet interface being labeled eth0, and sets your static ip to 192.168.1.10, with your router at 192.168.1.1.
 
 ## Before Running
 
@@ -16,13 +19,13 @@ An ansible playbook to set up my homelab stuff on Ubuntu 24 using Docker via Ans
 
 SSH into the server as your root user, clone the repo, then install the dependencies:
 
-```
+```shell
 ansible-galaxy install -r requirements.yml
 ```
 
 Then run the playbook:
 
-```
+```shell
 sudo ansible-playbook -i ./inventories/localhost/hosts.yml main.yml
 ```
 
