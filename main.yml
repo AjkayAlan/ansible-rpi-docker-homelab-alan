@@ -6,4 +6,5 @@
     - docker
     - adguard_home
     - smokeping
+    - omada_controller
     - watchtower
