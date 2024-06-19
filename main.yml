@@ -6,3 +6,4 @@
     - docker
     - adguard_home
     - smokeping
+    - watchtower

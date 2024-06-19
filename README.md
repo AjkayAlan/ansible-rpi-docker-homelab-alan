@@ -2,13 +2,15 @@
 
 An ansible playbook to set up my homelab stuff on Ubuntu 24 using Docker via Ansible
 
-## Distro Support
+## Disclaimers
 
-This has only been tested on Ubuntu 24. Other Ubuntu versions may work (try at your own risk!). Other distros are not supported.
+- This has only been tested on Ubuntu 24. Other Ubuntu versions may work (try at your own risk!). Other distros are not supported.
+- This uses Watchtower to auto update running containers, which may increase instability or cause issues for some containers
 
 ## Before Running
 
-Adguard is setup to only use standard port 53. If you plan to do more stuff like DNS-over-HTTPS, you will need to edit the role to pass the proper ports
+- Adguard is setup to only use standard port 53. If you plan to do more stuff like DNS-over-HTTPS, you will need to edit the role to pass the proper ports
+- Smokeping is using a default target from the container which is solid. If you want to customie it, you will need to add to that role
 
 ## Running
 
@@ -34,8 +36,8 @@ Set up Adguard Home if you havent by going to http://your-server:3000. Set the l
 
 UIs:
 
-- Adguard Home: 3000
-- Smokeping: 8080
+- Adguard Home: 3000 (on /)
+- Smokeping: 8080 (on /smokeping/smokeping.cgi)
 
 Other:
 

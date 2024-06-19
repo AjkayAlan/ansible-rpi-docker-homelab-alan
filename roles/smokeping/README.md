@@ -1,3 +1,3 @@
-# Adguard Home
+# Smokeping
 
-Spins up Adguard Home for local DNS filtering
+Spins up Smokeping latency monitoring
