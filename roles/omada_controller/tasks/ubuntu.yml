@@ -26,7 +26,7 @@
     detach: true
     stop_timeout: 60
     ulimits:
-      - "nofile=4096:8192"
+      - "nofile:4096:8192"
     ports:
       - "8088:8088"
       - "8043:8043"
