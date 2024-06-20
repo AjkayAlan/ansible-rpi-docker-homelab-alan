@@ -6,14 +6,23 @@ An ansible playbook to set up my homelab stuff on Ubuntu 24 using Docker via Ans
 
 Running this without knowing what it does may break your machine! You have been warned! Some notes:
 
+- This assumes you are running the playlook locally. If you plan to run it remotely, you will need to make changes.
 - This has only been tested on Ubuntu 24. Other Ubuntu versions may work (try at your own risk!). Other distros are not supported.
 - This uses Watchtower to auto update running containers, which may increase instability or cause issues for some containers
 - This relies on your ethernet interface being labeled eth0, and sets your static ip to 192.168.1.10, with your router at 192.168.1.1.
-
-## Before Running
-
 - Adguard is setup to only use standard port 53. If you plan to do more stuff like DNS-over-HTTPS, you will need to edit the role to pass the proper ports
 - Smokeping is using a default target from the container which is solid. If you want to customie it, you will need to add to that role
+
+## Prerequisites
+
+Install Ansible & Git
+
+```shell
+sudo apt update
+sudo apt install -y software-properties-common git
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+sudo apt install -y ansible
+```
 
 ## Running
 

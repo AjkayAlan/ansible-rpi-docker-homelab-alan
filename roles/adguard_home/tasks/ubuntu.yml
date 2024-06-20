@@ -26,9 +26,13 @@
   ansible.builtin.file:
     path: /etc/systemd/resolved.conf.d/adguardhome.conf
     state: touch
+    access_time: preserve
+    modification_time: preserve
     mode: "0644"
 
 # We do this so if Adguard fails to start our internet isnt fully broken
+# This is quickly replaced once the Adguard container is running to use Adguard instead
+# Adguard works out of the box, though it may not use your ideal settings until you config it
 - name: Copy a starting dns config before switching to adguard
   ansible.builtin.copy:
     dest: /etc/systemd/resolved.conf.d/adguardhome.conf
@@ -87,6 +91,7 @@
       - "{{ container_parent_data_directory }}/{{ container_name }}/work:/opt/adguardhome/work"
       - "{{ container_parent_data_directory }}/{{ container_name }}/conf:/opt/adguardhome/conf"
 
+# Since Adguard started, we can use it for DNS now
 - name: Copy a final dns config after adguard started
   ansible.builtin.copy:
     dest: /etc/systemd/resolved.conf.d/adguardhome.conf
