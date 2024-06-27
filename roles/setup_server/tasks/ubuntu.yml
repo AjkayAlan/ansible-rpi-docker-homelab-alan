@@ -31,6 +31,7 @@
       - unattended-upgrades
       - vim
       - wget
+      - zsh
 
 - name: Create a directory for all container data
   ansible.builtin.file:
@@ -53,3 +54,27 @@
     name: unattended-upgrades.service
     state: restarted
   when: unattended_upgrade_config.changed
+
+- name: Set zsh as default shell for original user
+  ansible.builtin.user:
+    name: "{{ ansible_env.SUDO_USER }}"
+    shell: "/usr/bin/zsh"
+
+- name: Set zsh as default shell for original user
+  ansible.builtin.user:
+    name: "{{ ansible_env.SUDO_USER }}"
+    shell: "/usr/bin/zsh"
+
+- name: Download Oh My Zsh
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    dest: /tmp/install_ohmyzsh.sh
+  become: true
+  become_user: "{{ ansible_env.SUDO_USER }}"
+
+- name: Run Oh My Zsh installation script
+  command: sh /tmp/install_ohmyzsh.sh --unattended
+  register: ohmyzsh_result
+  failed_when: "'FAILED' in ohmyzsh_result.stderr"
+  become: true
+  become_user: "{{ ansible_env.SUDO_USER }}"
