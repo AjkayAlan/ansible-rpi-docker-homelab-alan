@@ -60,11 +60,6 @@
     name: "{{ ansible_env.SUDO_USER }}"
     shell: "/usr/bin/zsh"
 
-- name: Set zsh as default shell for original user
-  ansible.builtin.user:
-    name: "{{ ansible_env.SUDO_USER }}"
-    shell: "/usr/bin/zsh"
-
 - name: Download Oh My Zsh
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
