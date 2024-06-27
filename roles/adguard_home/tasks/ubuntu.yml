@@ -71,6 +71,7 @@
     state: started
     restart_policy: unless-stopped
     detach: true
+    image_name_mismatch: "ignore"
     ports:
       - "53:53/tcp"
       - "53:53/udp"

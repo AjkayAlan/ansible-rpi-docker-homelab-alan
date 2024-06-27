@@ -11,6 +11,7 @@
     state: started
     restart_policy: unless-stopped
     detach: true
+    image_name_mismatch: "ignore"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     env:
