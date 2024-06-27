@@ -28,6 +28,7 @@
       - htop
       - nano
       - software-properties-common
+      - unattended-upgrades
       - vim
       - wget
 
@@ -36,3 +37,19 @@
     path: "{{ container_parent_data_directory }}"
     state: directory
     mode: "0755"
+
+# Not a good idea for prod, but good for homelab
+- name: Set up unattended-upgrades with a few more aggressive settings
+  ansible.builtin.copy:
+    src: 50unattended-upgrades
+    dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    owner: root
+    group: root
+    mode: "0644"
+  register: unattended_upgrade_config
+
+- name: Restart unattended-upgrades if needed
+  ansible.builtin.service:
+    name: unattended-upgrades.service
+    state: restarted
+  when: unattended_upgrade_config.changed
