@@ -81,6 +81,7 @@
   ansible.builtin.get_url:
     url: https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh
     dest: /tmp/speedtest-installer.sh
+    mode: "0755"
 
 - name: Execute the speedtest installer
   ansible.builtin.shell: /tmp/speedtest-installer.sh
