@@ -77,21 +77,21 @@
   become: true
   become_user: "{{ ansible_env.SUDO_USER }}"
 
-- name: Download speedtest installer
-  ansible.builtin.get_url:
-    url: https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh
-    dest: /tmp/speedtest-installer.sh
-    mode: "0755"
+# - name: Download speedtest installer
+#   ansible.builtin.get_url:
+#     url: https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh
+#     dest: /tmp/speedtest-installer.sh
+#     mode: "0755"
 
-- name: Execute the speedtest installer
-  ansible.builtin.shell: /tmp/speedtest-installer.sh
+# - name: Execute the speedtest installer
+#   ansible.builtin.shell: /tmp/speedtest-installer.sh
 
-- name: Remove the speedtest installer
-  ansible.builtin.file:
-    path: /tmp/speedtest-installer.sh
-    state: absent
+# - name: Remove the speedtest installer
+#   ansible.builtin.file:
+#     path: /tmp/speedtest-installer.sh
+#     state: absent
 
-- name: Install speedtest cli
-  ansible.builtin.apt:
-    name:
-      - speedtest
+# - name: Install speedtest cli
+#   ansible.builtin.apt:
+#     name:
+#       - speedtest
