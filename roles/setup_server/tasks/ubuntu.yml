@@ -84,9 +84,6 @@
 
 - name: Execute the speedtest installer
   ansible.builtin.shell: /tmp/speedtest-installer.sh
-  args:
-    executable: /bin/bash
-  become: true
 
 - name: Remove the speedtest installer
   ansible.builtin.file:
