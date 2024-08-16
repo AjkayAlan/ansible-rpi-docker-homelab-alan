@@ -46,7 +46,7 @@ ansible-galaxy install -r requirements.yml
 Then run the playbook:
 
 ```shell
-sudo ansible-playbook -i ./inventories/localhost/hosts.yml -e @secrets_file.enc --ask-vault-pass main.yml
+sudo ansible-playbook -i ./inventories/localhost/hosts.yml -e @secrets.enc --ask-vault-pass main.yml
 ```
 
 Note that the first time after running the docker role, you will need to close and reopen your ssh session to use docker commands without sudo.
