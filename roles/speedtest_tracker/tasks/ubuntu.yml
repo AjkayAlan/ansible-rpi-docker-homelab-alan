@@ -24,7 +24,7 @@
       PUID: "1000"
       PGID: "1000"
       TZ: "Etc/UTC"
-      #- APP_KEY=
+      APP_KEY: "{{ speedtest_tracker_app_key }}"
       DB_CONNECTION: "sqlite"
       SPEEDTEST_SCHEDULE: "0 5 * * 1"
       SPEEDTEST_SERVERS: ""

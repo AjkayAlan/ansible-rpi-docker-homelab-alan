@@ -24,6 +24,17 @@ sudo add-apt-repository --yes --update ppa:ansible/ansible
 sudo apt install -y ansible
 ```
 
+Then generate an APP Key for the [speedtest_tracker](https://speedtest-tracker.dev/) for yourself, and encrypt it using ansible vault. You will only need to do this once - and the secret is safe to commit once encrypted (but remember your encryption password):
+
+```
+rm secrets.enc
+touch secrets.enc
+echo "speedtest_tracker_app_key: base64:TS7jPuL2/944ZtDwxT+iX/pVoQ4CILkVvweVy+Wdxl0=" >> secrets.enc
+ansible-vault encrypt secrets.enc
+```
+
+Use a good password, and store it in your personal password manager!
+
 ## Running
 
 SSH into the server as your root user, clone the repo, then install the dependencies:
@@ -35,7 +46,7 @@ ansible-galaxy install -r requirements.yml
 Then run the playbook:
 
 ```shell
-sudo ansible-playbook -i ./inventories/localhost/hosts.yml main.yml
+sudo ansible-playbook -i ./inventories/localhost/hosts.yml -e @secrets_file.enc --ask-vault-pass main.yml
 ```
 
 Note that the first time after running the docker role, you will need to close and reopen your ssh session to use docker commands without sudo.
