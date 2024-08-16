@@ -51,6 +51,7 @@ UIs:
 - Adguard Home: 3000 (on /)
 - Smokeping: 8080 (on /smokeping/smokeping.cgi)
 - Omada Controller: 8088, 8043 (on /)
+- Speedtest Tracker: 8081 (on /)
 
 Other:
 
