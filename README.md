@@ -62,7 +62,7 @@ UIs:
 - Adguard Home: 3000 (on /)
 - Smokeping: 8080 (on /smokeping/smokeping.cgi)
 - Omada Controller: 8088, 8043 (on /)
-- Speedtest Tracker: 8081 (on /)
+- Speedtest Tracker: 8081 (on /). See the [docs](https://docs.speedtest-tracker.dev/security/authentication) for default login info.
 
 Other:
 
