@@ -54,7 +54,7 @@ UIs:
 
 Other:
 
-- Adguard Home: 53
+- Adguard Home: 53, 443
 
 ## Troubleshooting
 
