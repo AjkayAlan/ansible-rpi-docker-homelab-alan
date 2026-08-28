@@ -1,5 +1,16 @@
 - hosts: all
   become: true
+  pre_tasks:
+    - name: Assert the target host is Ubuntu 26
+      ansible.builtin.assert:
+        that:
+          - ansible_facts["distribution"] | lower == "ubuntu"
+          - ansible_facts["distribution_major_version"] == ubuntu_major_version
+        fail_msg: >-
+          This playbook only supports Ubuntu {{ ubuntu_major_version }}.
+          Detected {{ ansible_facts["distribution"] }}
+          {{ ansible_facts["distribution_version"] }}.
+          Other distros and versions are not supported.
   roles:
     - setup_server
     - ansible

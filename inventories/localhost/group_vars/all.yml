@@ -1,1 +1,5 @@
 container_parent_data_directory: "/containers"
+
+# The only Ubuntu major version this playbook supports. Bump this when
+# upgrading to a new Ubuntu LTS release.
+ubuntu_major_version: "26"

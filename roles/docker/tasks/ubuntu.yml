@@ -7,6 +7,7 @@
     name:
       - ca-certificates
       - curl
+      - python3-debian
 
 - name: Ensure conflicting packages arent installed
   ansible.builtin.apt:
@@ -31,10 +32,18 @@
     mode: "0444"
 
 - name: Add Docker repository
-  ansible.builtin.apt_repository:
-    repo: "{{ docker_apt_repository }}"
-    filename: "{{ docker_apt_filename }}"
-    update_cache: true
+  ansible.builtin.deb822_repository:
+    name: "{{ docker_apt_filename }}"
+    types: deb
+    uris: "{{ docker_repo_url }}/{{ docker_apt_ansible_distribution | lower }}"
+    suites: "{{ ansible_distribution_release }}"
+    components: "{{ docker_apt_release_channel }}"
+    architectures: "{{ docker_apt_arch }}"
+    signed_by: /etc/apt/keyrings/docker.asc
+
+- name: Update apt cache after adding Docker repository
+  ansible.builtin.apt:
+    update_cache: yes
 
 - name: Install docker
   ansible.builtin.apt:
